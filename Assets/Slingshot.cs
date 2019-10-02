@@ -17,8 +17,7 @@ public class Slingshot : MonoBehaviour
 
     private Rigidbody projectileRigidbody;
 
-    private void Awake()
-    {
+    private void Awake() {
         Transform launchPointTrans = transform.FindChild("LaunchPoint");
         launchPoint = launchPointTrans.gameObject;
         launchPoint.SetActive(false);
@@ -38,8 +37,7 @@ public class Slingshot : MonoBehaviour
         launchPoint.SetActive(false);
     }
 
-    private void OnMouseDown()
-    {
+    private void OnMouseDown() {
         aimingMode = true;
         projectile = Instantiate(prefabProjectile) as GameObject;
         projectile.transform.position = launchPos;
@@ -49,18 +47,16 @@ public class Slingshot : MonoBehaviour
 
     }
 
-    private void Update()
-    {
+    private void Update() {
         if (!aimingMode) return;
 
         Vector3 mousePos2D = Input.mousePosition;
         mousePos2D.z = -Camera.main.transform.position.z;
         Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
 
-        Vector3 mouseDelta = mousePos3D - launchPos;
+        Vector3 mouseDelta = mousePos3D-launchPos;
         float maxMagnitude = this.GetComponent<SphereCollider>().radius;
-        if (mouseDelta.magnitude > maxMagnitude)
-        {
+        if (mouseDelta.magnitude > maxMagnitude) {
             mouseDelta.Normalize();
             mouseDelta *= maxMagnitude;
         }
@@ -68,11 +64,11 @@ public class Slingshot : MonoBehaviour
         Vector3 projPos = launchPos + mouseDelta;
         projectile.transform.position = projPos;
 
-        if ( Input.GetMouseButtonUp(0) ) 
-        { 
+        if ( Input.GetMouseButtonUp(0) ) { 
         aimingMode = false;
         projectileRigidbody.isKinematic = false;
         projectileRigidbody.velocity = -mouseDelta * velocityMult;
+            FollowCam.POI = projectile;
         projectile = null;
              
         }

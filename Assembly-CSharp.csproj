@@ -60,6 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Cloud.cs" />
+    <Compile Include="Assets\CloudCrafter.cs" />
+    <Compile Include="Assets\FollowCam.cs" />
     <Compile Include="Assets\Slingshot.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/nishantshastri/Documents/GitHub/Mission Demolition Prototype/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
