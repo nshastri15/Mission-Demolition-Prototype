@@ -1,25 +1,24 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class Goal : MonoBehaviour
 {
+    // A static field accessible by code anywhere
     static public bool goalMet = false;
-    // Start is called before the first frame update
-    void OnTriggerEnter( Collider other )
+
+    void OnTriggerEnter(Collider other)
     {
-        if ( other.gameObject.tag == "Projectile")
+        // When the trigger is hit by something
+        // Check to see if it's a Projectile
+        if (other.gameObject.tag == "Projectile")
         {
+            // If so, set goalMet to true
             Goal.goalMet = true;
+            // Also set the alpha of the color to higher opacity
             Material mat = GetComponent<Renderer>().material;
             Color c = mat.color;
             c.a = 1;
             mat.color = c;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
